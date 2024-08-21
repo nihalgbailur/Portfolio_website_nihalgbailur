@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -21,15 +21,29 @@ const TextWrapper = styled(motion.div)`
   margin: 0 auto;
 `;
 
+const typingAnimation = keyframes`
+  from { width: 0; }
+  to { width: 100%; }
+`;
+
 const Title = styled.h1`
   font-size: 48px;
   margin-bottom: 20px;
+  color: #00aaff; /* Bright blue color */
+  background: linear-gradient(45deg, #00aaff, #00ffaa); /* Gradient effect */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: ${typingAnimation} 2s steps(40, end) forwards;
 `;
 
 const SubText = styled.p`
   font-size: 24px;
   line-height: 1.6;
   margin-bottom: 40px;
+  color: #fff; /* White color */
 `;
 
 const SkillSection = styled.div`
@@ -39,6 +53,14 @@ const SkillSection = styled.div`
 const SkillTitle = styled.h2`
   font-size: 32px;
   margin-bottom: 15px;
+  color: #00aaff; /* Blue color */
+  background: linear-gradient(45deg, #00aaff, #00ffaa); /* Gradient effect */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: ${typingAnimation} 5s steps(30, end) forwards;
 `;
 
 const SkillList = styled.ul`
