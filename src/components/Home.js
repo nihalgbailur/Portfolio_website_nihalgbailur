@@ -28,7 +28,7 @@ function Home() {
     <HomeContainer>
       <div>
         <WelcomeText>Welcome to My Portfolio</WelcomeText>
-        <SubText>I am a [Your Profession], specializing in [Your Skills].</SubText>
+        <SubText>Python Enthusiast Advancing Automotive Safety Through ADAS Testing </SubText>
       </div>
     </HomeContainer>
   );
