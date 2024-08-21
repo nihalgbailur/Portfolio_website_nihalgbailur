@@ -11,7 +11,7 @@ const AboutContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: left;
   background-color: #000;
   color: #fff;
 `;
@@ -32,6 +32,24 @@ const SubText = styled.p`
   margin-bottom: 40px;
 `;
 
+const SkillSection = styled.div`
+  margin-top: 20px;
+`;
+
+const SkillTitle = styled.h2`
+  font-size: 32px;
+  margin-bottom: 15px;
+`;
+
+const SkillList = styled.ul`
+  font-size: 20px;
+  line-height: 1.6;
+`;
+
+const SkillItem = styled.li`
+  margin-bottom: 10px;
+`;
+
 function AboutMe() {
   const { ref, inView } = useInView({
     threshold: 0.5,
@@ -44,15 +62,26 @@ function AboutMe() {
         ref={ref}
         initial={{ opacity: 0, y: 50 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <Title>About Me</Title>
+        <Title>Hello! I'm a passionate Automotive Testing Professional</Title>
         <SubText>
-          I am a dedicated professional with a passion for [Your Passion].
-          With [X] years of experience in [Your Field], I have honed my
-          skills in [Key Skills] and am always eager to learn and take on new
-          challenges.
+          With a strong focus on Python-based ADAS Testing, I bring valuable
+          skills in Python, Git, GitHub, MTS tool, and CarMaker tool to ensure
+          top-notch performance and reliability in automotive systems,
+          contributing to enhanced safety and innovation in the industry.
         </SubText>
+        <SkillSection>
+          <SkillTitle>Key Skills & Experiences</SkillTitle>
+          <SkillList>
+            <SkillItem>Over 2.5 years of expertise in Automotive Testing</SkillItem>
+            <SkillItem>Specializing in the Automotive domain, excelling in testing Advanced Driver Assistance Systems (ADAS)</SkillItem>
+            <SkillItem>Proficient in Python scripting to create efficient testing scripts</SkillItem>
+            <SkillItem>Experienced with Git and GitHub for version control and collaborative development</SkillItem>
+            <SkillItem>Utilized MTS tool for comprehensive Automotive Testing and validation</SkillItem>
+            <SkillItem>Familiar with CarMaker tool for simulating real-world scenarios and optimizing automotive system performance</SkillItem>
+          </SkillList>
+        </SkillSection>
       </TextWrapper>
     </AboutContainer>
   );
