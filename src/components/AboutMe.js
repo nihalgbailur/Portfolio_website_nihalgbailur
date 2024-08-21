@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -27,27 +27,15 @@ const AboutContainer = styled.section`
 const TextWrapper = styled(motion.div)`
   max-width: 800px;
   margin: 0 auto;
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-  }
-`;
-
-const typingAnimation = keyframes`
-  from { width: 0; }
-  to { width: 100%; }
 `;
 
 const Title = styled.h1`
   font-size: 48px;
   margin-bottom: 20px;
-  background: linear-gradient(45deg, #00aaff, #00ffaa); /* Gradient effect */
+  color: #00aaff;
+  background: linear-gradient(45deg, #00aaff, #00ffaa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 0;
-  animation: ${typingAnimation} 4s steps(40, end) forwards;
 
   @media (max-width: 768px) {
     font-size: 36px;
@@ -62,7 +50,7 @@ const SubText = styled.p`
   font-size: 24px;
   line-height: 1.6;
   margin-bottom: 40px;
-  color: #fff; /* White color */
+  color: #fff;
 
   @media (max-width: 768px) {
     font-size: 20px;
@@ -81,14 +69,10 @@ const SkillSection = styled.div`
 const SkillTitle = styled.h2`
   font-size: 32px;
   margin-bottom: 15px;
-  background: linear-gradient(45deg, #00aaff, #00ffaa); /* Gradient effect */
+  color: #00aaff;
+  background: linear-gradient(45deg, #00aaff, #00ffaa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 0;
-  animation: ${typingAnimation} 3s steps(30, end) forwards;
-  animation-delay: 4s; /* Delay to start after Title animation */
 
   @media (max-width: 768px) {
     font-size: 28px;
