@@ -14,11 +14,23 @@ const AboutContainer = styled.section`
   text-align: left;
   background-color: #000;
   color: #fff;
+
+  @media (max-width: 768px) {
+    padding: 50px 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 40px 10px;
+  }
 `;
 
 const TextWrapper = styled(motion.div)`
   max-width: 800px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
 const typingAnimation = keyframes`
@@ -29,14 +41,21 @@ const typingAnimation = keyframes`
 const Title = styled.h1`
   font-size: 48px;
   margin-bottom: 20px;
-  color: #00aaff; /* Bright blue color */
   background: linear-gradient(45deg, #00aaff, #00ffaa); /* Gradient effect */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   overflow: hidden;
   white-space: nowrap;
   width: 0;
-  animation: ${typingAnimation} 2s steps(40, end) forwards;
+  animation: ${typingAnimation} 4s steps(40, end) forwards;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+  }
 `;
 
 const SubText = styled.p`
@@ -44,6 +63,15 @@ const SubText = styled.p`
   line-height: 1.6;
   margin-bottom: 40px;
   color: #fff; /* White color */
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
 `;
 
 const SkillSection = styled.div`
@@ -53,19 +81,35 @@ const SkillSection = styled.div`
 const SkillTitle = styled.h2`
   font-size: 32px;
   margin-bottom: 15px;
-  color: #00aaff; /* Blue color */
   background: linear-gradient(45deg, #00aaff, #00ffaa); /* Gradient effect */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   overflow: hidden;
   white-space: nowrap;
   width: 0;
-  animation: ${typingAnimation} 5s steps(30, end) forwards;
+  animation: ${typingAnimation} 3s steps(30, end) forwards;
+  animation-delay: 4s; /* Delay to start after Title animation */
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
 `;
 
 const SkillList = styled.ul`
   font-size: 20px;
   line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 
 const SkillItem = styled.li`
