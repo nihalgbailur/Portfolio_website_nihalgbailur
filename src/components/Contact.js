@@ -6,6 +6,14 @@ const ContactContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 40px 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 30px 10px;
+  }
 `;
 
 const ContactForm = styled.form`
@@ -13,6 +21,16 @@ const ContactForm = styled.form`
   flex-direction: column;
   gap: 20px;
   margin-top: 30px;
+
+  @media (max-width: 768px) {
+    gap: 15px;
+    margin-top: 25px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 10px;
+    margin-top: 20px;
+  }
 `;
 
 const Input = styled.input`
@@ -20,6 +38,16 @@ const Input = styled.input`
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
+
+  @media (max-width: 768px) {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 6px;
+    font-size: 13px;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -28,6 +56,16 @@ const TextArea = styled.textarea`
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: none;
+
+  @media (max-width: 768px) {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 6px;
+    font-size: 13px;
+  }
 `;
 
 const SubmitButton = styled.button`
@@ -41,6 +79,16 @@ const SubmitButton = styled.button`
 
   &:hover {
     background-color: #005bb5;
+  }
+
+  @media (max-width: 768px) {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 6px 12px;
+    font-size: 13px;
   }
 `;
 

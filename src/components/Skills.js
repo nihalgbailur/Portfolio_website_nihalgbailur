@@ -16,6 +16,14 @@ const SkillsContainer = styled.section`
   justify-content: center;
   background-color: #000;
   color: #fff;
+
+  @media (max-width: 768px) {
+    padding: 40px 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 30px 10px;
+  }
 `;
 
 const SkillsWrapper = styled.div`
@@ -23,6 +31,7 @@ const SkillsWrapper = styled.div`
   flex-direction: column;
   gap: 40px;
   align-items: center;
+  width: 100%;
 `;
 
 const SkillCard = styled(motion.div)`
@@ -39,6 +48,16 @@ const SkillCard = styled(motion.div)`
   &:hover {
     transform: scale(1.05);
   }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    padding: 15px;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: 10px;
+  }
 `;
 
 const SkillHeader = styled.div`
@@ -46,17 +65,45 @@ const SkillHeader = styled.div`
   align-items: center;
   gap: 20px;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
 `;
 
 const SkillLogo = styled.img`
   width: 60px;
   height: 60px;
+
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+  }
+
+  @media (max-width: 480px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const SkillName = styled.p`
   font-size: 24px;
   font-weight: bold;
   color: #fff;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 `;
 
 const ProgressBarContainer = styled.div`
@@ -65,18 +112,34 @@ const ProgressBarContainer = styled.div`
   border-radius: 10px;
   overflow: hidden;
   margin-top: 10px;
+
+  @media (max-width: 768px) {
+    margin-top: 8px;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 6px;
+  }
 `;
 
 const ProgressBar = styled(motion.div)`
   height: 15px;
   background-color: #0071e3;
   border-radius: 10px;
+
+  @media (max-width: 768px) {
+    height: 12px;
+  }
+
+  @media (max-width: 480px) {
+    height: 10px;
+  }
 `;
 
 function Skills() {
   const skills = [
     { name: 'Python', logo: pythonLogo, level: '90%' },
-    { name: 'Git/GitHub', logo: gitLogo,level: '90%' },
+    { name: 'Git/GitHub', logo: gitLogo, level: '90%' },
     { name: 'SQL', logo: sqlLogo, level: '70%' },
     { name: 'Jira', logo: jiraLogo, level: '90%' },
     { name: 'Confluence', logo: confluenceLogo, level: '90%' },
