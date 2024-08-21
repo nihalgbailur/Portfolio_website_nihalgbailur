@@ -8,9 +8,11 @@ import Education from './components/Education';
 import Certifications from './components/Certifications';
 import Projects from './components/Projects';
 import Publications from './components/Publications';
-import Contact from './components/Contact';
+import Contact from './components/Contact'; 
 import Navbar from './components/Navbar';
 import GlobalStyle from './styles/GlobalStyle';
+
+
 
 function App() {
   return (

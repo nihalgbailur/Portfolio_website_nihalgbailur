@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import BubbleEffect from './BubbleEffect';
 
 const HomeContainer = styled.section`
+  position: relative;
   min-height: 100vh;
   padding: 100px 20px;
   display: flex;
@@ -12,6 +14,15 @@ const HomeContainer = styled.section`
   justify-content: center;
   background-color: #000;
   color: #fff;
+  overflow: hidden; /* Ensure the bubbles stay within the viewport */
+
+  @media (max-width: 768px) {
+    padding: 50px 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 40px 10px;
+  }
 `;
 
 const ImageWrapper = styled(motion.div)`
@@ -21,6 +32,7 @@ const ImageWrapper = styled(motion.div)`
   overflow: hidden;
   border-radius: 50%;
   background-color: #333;
+  z-index: 1; /* Ensure the image stays above the bubbles */
 
   @media (max-width: 768px) {
     width: 250px;
@@ -45,6 +57,7 @@ const Text = styled(motion.h1)`
   background: linear-gradient(45deg, #00aaff, #00ffaa); /* Gradient effect */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  z-index: 1; /* Ensure the text stays above the bubbles */
 
   @media (max-width: 768px) {
     font-size: 36px;
@@ -75,6 +88,7 @@ function Home() {
 
   return (
     <HomeContainer id="home">
+      <BubbleEffect /> {/* Adding the bubble effect as a background */}
       <ImageWrapper ref={ref} animate={controls}>
         <Image src="your-photo.jpg" alt="Your Name" />
       </ImageWrapper>
