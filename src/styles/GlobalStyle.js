@@ -1,33 +1,24 @@
+// GlobalStyle.js
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #000;
-    color: #fff;
+    box-sizing: border-box;
+    background-color: #000; /* Black background */
+    color: #fff; /* Default text color */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    margin: 0;
+  #root {
+    width: 100%;
   }
 
-  p {
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  /* Smooth scrolling effect */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Add a slight parallax effect */
-  #about {
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
+  section {
+    width: 100%;
+    background-color: #000; /* Ensures all sections have black background */
   }
 `;
 

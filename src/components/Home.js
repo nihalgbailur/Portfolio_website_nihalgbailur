@@ -2,26 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import BubbleEffect from './BubbleEffect';
 
 const HomeContainer = styled.section`
-  position: relative;
-  min-height: 100vh;
+  height: 100vh;
   padding: 100px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #000;
-  color: #fff;
-  overflow: hidden; /* Ensure the bubbles stay within the viewport */
-
+  background: #0d0d0d; /* Black background */
+  color: #fff; /* White text color */
+  
   @media (max-width: 768px) {
-    padding: 50px 15px;
+    padding: 80px 15px;
   }
 
   @media (max-width: 480px) {
-    padding: 40px 10px;
+    padding: 60px 10px;
   }
 `;
 
@@ -31,8 +28,11 @@ const ImageWrapper = styled(motion.div)`
   margin-bottom: 40px;
   overflow: hidden;
   border-radius: 50%;
-  background-color: #333;
-  z-index: 1; /* Ensure the image stays above the bubbles */
+  background: rgba(255, 255, 255, 0.1); /* Light transparency for glassmorphic effect */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Dark shadow for depth */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   @media (max-width: 768px) {
     width: 250px;
@@ -54,10 +54,10 @@ const Image = styled.img`
 const Text = styled(motion.h1)`
   font-size: 48px;
   margin-bottom: 20px;
-  background: linear-gradient(45deg, #00aaff, #00ffaa); /* Gradient effect */
+  background: linear-gradient(45deg, #00aaff, #00ffaa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  z-index: 1; /* Ensure the text stays above the bubbles */
+  text-align: center;
 
   @media (max-width: 768px) {
     font-size: 36px;
@@ -78,7 +78,7 @@ function Home() {
   React.useEffect(() => {
     if (inView) {
       controls.start({
-        scale: 1.2, // Scale up the image and text
+        scale: 1.2,
         transition: { duration: 1 },
       });
     } else {
@@ -88,13 +88,10 @@ function Home() {
 
   return (
     <HomeContainer id="home">
-      <BubbleEffect /> {/* Adding the bubble effect as a background */}
       <ImageWrapper ref={ref} animate={controls}>
         <Image src="your-photo.jpg" alt="Your Name" />
       </ImageWrapper>
-      <Text animate={controls}>
-        Welcome to My Portfolio
-      </Text>
+      <Text animate={controls}>Welcome to My Portfolio</Text>
     </HomeContainer>
   );
 }
