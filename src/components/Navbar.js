@@ -6,7 +6,7 @@ const NavbarContainer = styled.nav`
   top: 0;
   width: 100%;
   padding: 20px;
-  background:  rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -23,7 +23,7 @@ const NavLinks = styled.div`
 
 const NavLink = styled.a`
   font-size: 16px;
-  color: ${(props) => (props.active ? '#080a09' : '#fff')}; /* Active link is blue, others are white */
+  color: ${(props) => (props.active ? '#080a09' : '#fff')}; /* Active link is black, others are white */
   font-weight: ${(props) => (props.active ? 'bold' : 'normal')};
   text-decoration: none;
 
