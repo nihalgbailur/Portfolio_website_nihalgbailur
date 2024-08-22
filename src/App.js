@@ -76,31 +76,31 @@ function AppContent() {
     <AppWrapper>
       <GlobalStyle />
       <Navbar activeSection={activeSection} />
-      <Section id="home" bgColor="#0d0d0d">
+      <Section id="home" bgColor="#000">
         <Home />
       </Section>
-      <Section id="about" bgColor="#0d0d0d">
+      <Section id="about" bgColor="#000">
         <AboutMe />
       </Section>
-      <Section id="work" bgColor="#0d0d0d">
+      <Section id="work" bgColor="#000">
         <WorkExperience />
       </Section>
-      <Section id="skills" bgColor="#0d0d0d">
+      <Section id="skills" bgColor="#000">
         <Skills />
       </Section>
-      <Section id="education" bgColor="#0d0d0d">
+      <Section id="education" bgColor="#000">
         <Education />
       </Section>
-      <Section id="certifications" bgColor="#0d0d0d">
+      <Section id="certifications" bgColor="#000">
         <Certifications />
       </Section>
-      <Section id="projects" bgColor="#0d0d0d">
+      <Section id="projects" bgColor="#000">
         <Projects />
       </Section>
-      <Section id="publications" bgColor="#0d0d0d">
+      <Section id="publications" bgColor="#000">
         <Publications />
       </Section>
-      <Section id="contact" bgColor="#0d0d0d">
+      <Section id="contact" bgColor="#000">
         <Contact />
       </Section>
     </AppWrapper>
