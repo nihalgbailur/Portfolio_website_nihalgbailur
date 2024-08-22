@@ -23,7 +23,7 @@ const NavLinks = styled.div`
 
 const NavLink = styled.a`
   font-size: 16px;
-  color: ${(props) => (props.active ? '#080a09' : '#fff')}; /* Active link is black, others are white */
+  color: ${(props) => (props.active ? '#0071e3' : '#fff')}; /* Active link is blue, others are white */
   font-weight: ${(props) => (props.active ? 'bold' : 'normal')};
   text-decoration: none;
 
