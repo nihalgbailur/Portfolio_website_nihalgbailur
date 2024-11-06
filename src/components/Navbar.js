@@ -36,9 +36,6 @@ function Navbar({ activeSection }) {
   return (
     <NavbarContainer>
       <NavLinks>
-        <NavLink href="#home" active={activeSection === 'home'}>
-          Home
-        </NavLink>
         <NavLink href="#about" active={activeSection === 'about'}>
           About Me
         </NavLink>

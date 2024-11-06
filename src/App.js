@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import Home from './components/Home';
 import AboutMe from './components/AboutMe';
 import WorkExperience from './components/WorkExperience';
 import Skills from './components/Skills';
@@ -76,9 +75,6 @@ function AppContent() {
     <AppWrapper>
       <GlobalStyle />
       <Navbar activeSection={activeSection} />
-      <Section id="home" bgColor="#000">
-        <Home />
-      </Section>
       <Section id="about" bgColor="#000">
         <AboutMe />
       </Section>

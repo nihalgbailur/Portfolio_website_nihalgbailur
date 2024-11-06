@@ -1,83 +1,98 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { FaPython, FaGithub, FaDatabase } from 'react-icons/fa';
+import { SiConfluence, SiJira } from 'react-icons/si';
 
-// Define a container for the skills section
+// Container for the skills section
 const SkillsContainer = styled.section`
-  padding: 80px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.1); /* Glassmorphic effect */
-  backdrop-filter: blur(10px);
-  color: #fff;
+  padding: 60px 20px;
+  background: rgba(255, 255, 255, 0.1); /* Frosted glass effect */
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  color: #fff; /* Set text color to white */
+  max-width: 1000px;
+  margin: auto;
 `;
 
-// Define a styled wrapper for each skill
-const SkillWrapper = styled(motion.div)`
-  width: 80%;
-  margin-bottom: 30px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+// Title styling
+const SectionTitle = styled.h2`
+  font-size: 2rem;
+  color: #ffffff; /* White color for better contrast */
+  margin-bottom: 20px;
+  text-align: center;
 `;
 
-const SkillTitle = styled.h3`
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #fff;
-`;
-
-const ProgressBarContainer = styled.div`
+// Grid for skill cards
+const SkillGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
-  height: 20px;
+  max-width: 800px;
 `;
 
-const ProgressBar = styled(motion.div)`
-  height: 100%;
-  background: linear-gradient(90deg, #00aaff, #00ffaa);
-  border-radius: 8px;
-  position: absolute;
-  left: 0;
-  top: 0;
+// Individual skill card styling
+const SkillCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
+// Icon styling
+const SkillIcon = styled.div`
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #007aff; /* Apple-inspired blue */
+`;
+
+// Skill title styling
+const SkillTitle = styled.h3`
+  font-size: 1.1rem;
+  color: #ffffff; /* White color for better visibility */
 `;
 
 // Define the skills component
 function Skills() {
-  // Array of skills with titles and levels
+  // Array of skills with icons and titles
   const skills = [
-    { name: 'Python', level: 90 },
-    { name: 'Git/GitHub', level: 85 },
-    { name: 'SQL', level: 70 },
-    { name: 'Jira', level: 80 },
-    { name: 'Confluence', level: 75 },
+    { name: 'Python', icon: <FaPython /> },
+    { name: 'GitHub', icon: <FaGithub /> },
+    { name: 'SQL', icon: <FaDatabase /> },
+    { name: 'Confluence', icon: <SiConfluence /> },
+    { name: 'Jira', icon: <SiJira /> },
   ];
 
   return (
     <SkillsContainer id="skills">
-      <h2>My Skills</h2>
-      {skills.map((skill, index) => (
-        <SkillWrapper
-          key={index}
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-        >
-          <SkillTitle>{skill.name}</SkillTitle>
-          <ProgressBarContainer>
-            <ProgressBar
-              initial={{ width: '0%' }}
-              whileInView={{ width: `${skill.level}%` }}
-              transition={{ duration: 1.5, ease: 'easeInOut' }}
-            />
-          </ProgressBarContainer>
-        </SkillWrapper>
-      ))}
+      <SectionTitle>My Skills</SectionTitle>
+      <SkillGrid>
+        {skills.map((skill, index) => (
+          <SkillCard
+            key={index}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
+            <SkillIcon>{skill.icon}</SkillIcon>
+            <SkillTitle>{skill.name}</SkillTitle>
+          </SkillCard>
+        ))}
+      </SkillGrid>
     </SkillsContainer>
   );
 }
