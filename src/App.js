@@ -13,13 +13,15 @@ import GlobalStyle from './styles/GlobalStyle';
 import styled from 'styled-components';
 
 const Section = styled.section`
-  height: 100vh;
-  padding: 100px 20px;
+  height: auto; /* Adjusted for dynamic content height */
+  min-height: 100vh; /* Keeps sections taking up full screen if needed */
+  padding: 60px 20px; /* Reduced padding to minimize extra space */
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   background-color: ${(props) => (props.bgColor ? props.bgColor : '#f5f5f5')};
+  scroll-margin-top: 80px; /* Prevents overlap with the Navbar when scrolling */
 
   h2 {
     font-size: 36px;
@@ -81,10 +83,10 @@ function AppContent() {
       <Section id="work" bgColor="#000">
         <WorkExperience />
       </Section>
-      <Section id="skills" bgColor="#000">
+      <Section id="skills" bgColor="#000a">
         <Skills />
       </Section>
-      <Section id="education" bgColor="#000">
+      <Section id="education" bgColor="#0000">
         <Education />
       </Section>
       <Section id="certifications" bgColor="#000">

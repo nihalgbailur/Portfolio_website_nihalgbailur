@@ -5,15 +5,19 @@ import { useInView } from 'react-intersection-observer';
 
 const WorkContainer = styled.section`
   min-height: 100vh;
-  padding: 100px 20px;
+  // padding: 100px 20px;
   max-width: 1200px;
-  margin: 0 auto;
+  // margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: left;
   background-color: #111;
   color: #fff;
+  margin-top: 0; /* Prevents extra spacing above */
+  margin-bottom: 0; /* Prevents extra spacing below */
+  padding: 60px 20px; /* Adjust padding as needed */
+  
 
   @media (max-width: 768px) {
     padding: 70px 15px;

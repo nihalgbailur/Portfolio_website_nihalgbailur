@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
+// Styled Components
 const AboutContainer = styled.section`
   min-height: 100vh;
-  padding: 100px 20px;
+  padding: 0 auto;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -29,7 +30,7 @@ const TextWrapper = styled(motion.div)`
   margin: 0 auto;
 `;
 
-const Title = styled.h1`
+const Title = styled(motion.h1)`
   font-size: 48px;
   margin-bottom: 20px;
   color: #00aaff;
@@ -46,7 +47,7 @@ const Title = styled.h1`
   }
 `;
 
-const SubText = styled.p`
+const SubText = styled(motion.p)`
   font-size: 24px;
   line-height: 1.6;
   margin-bottom: 40px;
@@ -66,7 +67,7 @@ const SkillSection = styled.div`
   margin-top: 20px;
 `;
 
-const SkillTitle = styled.h2`
+const SkillTitle = styled(motion.h2)`
   font-size: 32px;
   margin-bottom: 15px;
   color: #00aaff;
@@ -96,13 +97,14 @@ const SkillList = styled.ul`
   }
 `;
 
-const SkillItem = styled.li`
+const SkillItem = styled(motion.li)`
   margin-bottom: 10px;
 `;
 
+// Functional Component
 function AboutMe() {
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0.2,
     triggerOnce: true,
   });
 
@@ -114,22 +116,49 @@ function AboutMe() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <Title>Hello! I'm a passionate Automotive Testing Professional</Title>
-        <SubText>
+        <Title
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
+          Hello! I'm a passionate Automotive Testing Professional
+        </Title>
+        <SubText
+          initial={{ opacity: 0, x: -100 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+        >
           With a strong focus on Python-based ADAS Testing, I bring valuable
           skills in Python, Git, GitHub, MTS tool, and CarMaker tool to ensure
           top-notch performance and reliability in automotive systems,
           contributing to enhanced safety and innovation in the industry.
         </SubText>
         <SkillSection>
-          <SkillTitle>Key Skills & Experiences</SkillTitle>
+          <SkillTitle
+            initial={{ opacity: 0, y: -30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            Key Skills & Experiences
+          </SkillTitle>
           <SkillList>
-            <SkillItem>Over 2.5 years of expertise in Automotive Testing</SkillItem>
-            <SkillItem>Specializing in the Automotive domain, excelling in testing Advanced Driver Assistance Systems (ADAS)</SkillItem>
-            <SkillItem>Proficient in Python scripting to create efficient testing scripts</SkillItem>
-            <SkillItem>Experienced with Git and GitHub for version control and collaborative development</SkillItem>
-            <SkillItem>Utilized MTS tool for comprehensive Automotive Testing and validation</SkillItem>
-            <SkillItem>Familiar with CarMaker tool for simulating real-world scenarios and optimizing automotive system performance</SkillItem>
+            {[
+              'Over 2.5 years of expertise in Automotive Testing',
+              'Specializing in the Automotive domain, excelling in testing Advanced Driver Assistance Systems (ADAS)',
+              'Proficient in Python scripting to create efficient testing scripts',
+              'Experienced with Git and GitHub for version control and collaborative development',
+              'Utilized MTS tool for comprehensive Automotive Testing and validation',
+              'Familiar with CarMaker tool for simulating real-world scenarios and optimizing automotive system performance',
+            ].map((skill, index) => (
+              <SkillItem
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, ease: 'easeOut', delay: index * 0.2 }}
+              >
+                {skill}
+              </SkillItem>
+            ))}
           </SkillList>
         </SkillSection>
       </TextWrapper>
