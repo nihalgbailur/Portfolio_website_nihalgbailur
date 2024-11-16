@@ -9,6 +9,7 @@ const SkillsContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 60px 20px;
   background: rgba(255, 255, 255, 0.1); /* Frosted glass effect */
   backdrop-filter: blur(15px);
@@ -16,14 +17,17 @@ const SkillsContainer = styled.section`
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   color: #fff; /* Set text color to white */
   max-width: 1000px;
-  margin: auto;
+  margin: 60px auto;
 `;
 
 // Title styling
 const SectionTitle = styled.h2`
-  font-size: 2rem;
-  color: #ffffff; /* White color for better contrast */
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #56ccf2, #2f80ed); /* Blue to Purple Gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 40px;
   text-align: center;
 `;
 
@@ -31,7 +35,7 @@ const SectionTitle = styled.h2`
 const SkillGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
+  gap: 30px;
   width: 100%;
   max-width: 800px;
 `;
@@ -47,22 +51,28 @@ const SkillCard = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   color: #ffffff;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
   }
 `;
 
 // Icon styling
 const SkillIcon = styled.div`
-  font-size: 3rem;
-  margin-bottom: 10px;
+  font-size: 3.5rem;
+  margin-bottom: 15px;
   color: #007aff; /* Apple-inspired blue */
+  transition: color 0.2s ease;
+  ${SkillCard}:hover & {
+    color: #34e89e; /* Light green on hover */
+  }
 `;
 
 // Skill title styling
 const SkillTitle = styled.h3`
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
   color: #ffffff; /* White color for better visibility */
 `;
 
