@@ -1,10 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import React, { memo } from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
-import rvLogo from '../assets/rv-logo.png';
-import jnnceLogo from '../assets/jnnce-logo.png';
-
+// Styled Components
 const EducationContainer = styled.section`
   min-height: 100vh;
   padding: 50px 20px;
@@ -12,7 +10,10 @@ const EducationContainer = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #000;
+  background: #000;
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.25);
   color: #fff;
 
   @media (max-width: 768px) {
@@ -21,6 +22,26 @@ const EducationContainer = styled.section`
 
   @media (max-width: 480px) {
     padding: 30px 10px;
+  }
+`;
+
+const Title = styled(motion.h1)`
+  font-size: 36px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #00aaff;
+  background: linear-gradient(45deg, #00aaff, #00ffaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -42,87 +63,83 @@ const EducationWrapper = styled.div`
 
 const EducationCard = styled(motion.div)`
   display: flex;
-  align-items: center;
-  background-color: #1c1c1e;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease-in-out;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 768px) {
-    padding: 15px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  @media (max-width: 480px) {
-    padding: 10px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-`;
-
-const Logo = styled.img`
-  width: 80px;
-  height: 80px;
-  margin-right: 20px;
-
-  @media (max-width: 768px) {
-    width: 60px;
-    height: 60px;
-    margin-right: 15px;
-  }
-
-  @media (max-width: 480px) {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-`;
-
-const Details = styled.div`
-  display: flex;
   flex-direction: column;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
+  padding: 40px 20px; /* Increased top padding */
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 30px 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 25px 10px;
+  }
+`;
+
+const DateBubble = styled.div`
+  position: absolute;
+  top: 10px; /* Adjusted positioning */
+  left: 20px;
+  background: linear-gradient(45deg, #00aaff, #00ffaa);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 50px;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    padding: 4px 8px;
+    top: 8px; /* Adjusted for smaller screens */
+    left: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
+    padding: 3px 6px;
+    top: 6px; /* Adjusted for smaller screens */
+    left: 10px;
+  }
 `;
 
 const Institution = styled.h2`
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-top: 30px;
 
   @media (max-width: 768px) {
     font-size: 20px;
-    margin-bottom: 8px;
   }
 
   @media (max-width: 480px) {
     font-size: 18px;
-    margin-bottom: 6px;
   }
 `;
 
-const Degree = styled.p`
-  font-size: 18px;
-  margin-bottom: 5px;
+const Degree = styled.h3`
+  font-size: 20px;
+  color: #00ffaa;
+  margin-bottom: 10px;
 
   @media (max-width: 768px) {
-    font-size: 16px;
-    margin-bottom: 4px;
+    font-size: 18px;
   }
 
   @media (max-width: 480px) {
-    font-size: 14px;
-    margin-bottom: 3px;
+    font-size: 16px;
   }
 `;
 
-const Duration = styled.p`
+const Description = styled.p`
   font-size: 16px;
-  color: #999;
+  line-height: 1.6;
+  color: #ccc;
 
   @media (max-width: 768px) {
     font-size: 14px;
@@ -133,43 +150,56 @@ const Duration = styled.p`
   }
 `;
 
-function Education() {
+const Separator = styled.hr`
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, #00aaff, #00ffaa);
+  margin: 20px 0;
+`;
+
+// Component
+const Education = memo(() => {
   const education = [
     {
-      name: 'RV College Of Engineering',
-      logo: rvLogo,
-      degree: 'Master of Technology - MTech, Information Technology',
-      duration: '2018 - 2020',
+      date: "2018 - 2020",
+      institution: "RV College Of Engineering",
+      degree: "Master of Technology - MTech, Information Technology",
+      description:
+        "Focused on advanced computational systems and modern IT frameworks. Specialized in cloud computing, AI, and scalable software solutions.",
     },
     {
-      name: 'Jawaharlal Nehru National College of Engineering',
-      logo: jnnceLogo,
-      degree: 'Bachelor of Engineering - BE, Computer Science',
-      duration: '2014 - 2018',
+      date: "2014 - 2018",
+      institution: "Jawaharlal Nehru National College of Engineering",
+      degree: "Bachelor of Engineering - BE, Computer Science",
+      description:
+        "Learned core computer science concepts including algorithms, data structures, and web development. Gained hands-on experience in building software projects.",
     },
   ];
 
   return (
     <EducationContainer id="education">
+      <Title
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        Education
+      </Title>
       <EducationWrapper>
         {education.map((edu, index) => (
-          <EducationCard
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-          >
-            <Logo src={edu.logo} alt={`${edu.name} logo`} />
-            <Details>
-              <Institution>{edu.name}</Institution>
+          <React.Fragment key={index}>
+            <EducationCard>
+              <DateBubble>{edu.date}</DateBubble>
+              <Institution>{edu.institution}</Institution>
               <Degree>{edu.degree}</Degree>
-              <Duration>{edu.duration}</Duration>
-            </Details>
-          </EducationCard>
+              <Description>{edu.description}</Description>
+            </EducationCard>
+            {index < education.length - 1 && <Separator />}
+          </React.Fragment>
         ))}
       </EducationWrapper>
     </EducationContainer>
   );
-}
+});
 
 export default Education;

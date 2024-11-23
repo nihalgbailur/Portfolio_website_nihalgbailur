@@ -2,22 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa'; // Importing icons
 
 // Styled Components
 const AboutContainer = styled.section`
   min-height: 100vh;
-  padding: 80px 20px; /* Proper padding for spacing */
+  padding: 80px 20px;
   max-width: 1200px;
-  margin: 0 auto; /* Center horizontally, merge seamlessly */
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: left;
-  background-color: #000; /* Black background for contrast */
-  color: #fff; /* White text for visibility */
-  border-radius: 16px; /* Optional: keep rounded corners for a modern look */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25); /* Shadow for depth */
+  background-color: #000;
+  color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 
   @media (max-width: 768px) {
     padding: 60px 15px;
@@ -29,15 +30,15 @@ const AboutContainer = styled.section`
 `;
 
 const TextWrapper = styled(motion.div)`
-  max-width: 1000px; /* Restricts the width for better readability */
-  margin: 0 auto; /* Centers the content horizontally */
+  max-width: 1000px;
+  margin: 0 auto;
 `;
 
 const Title = styled(motion.h1)`
-  font-size: 48px; /* Larger font size for better emphasis */
+  font-size: 48px;
   margin-bottom: 20px;
-  color: #00aaff; /* Bright color for visibility */
-  background: linear-gradient(45deg, #00aaff, #00ffaa); /* Blue to green gradient */
+  color: #00aaff;
+  background: linear-gradient(45deg, #00aaff, #00ffaa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -54,7 +55,7 @@ const SubText = styled(motion.p)`
   font-size: 24px;
   line-height: 1.6;
   margin-bottom: 40px;
-  color: #fff; /* White text for better contrast */
+  color: #fff;
 
   @media (max-width: 768px) {
     font-size: 20px;
@@ -73,7 +74,7 @@ const SkillSection = styled.div`
 const SkillTitle = styled(motion.h2)`
   font-size: 32px;
   margin-bottom: 15px;
-  color: #00aaff; /* Bright blue color */
+  color: #00aaff;
   background: linear-gradient(45deg, #00aaff, #00ffaa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -102,6 +103,31 @@ const SkillList = styled.ul`
 
 const SkillItem = styled(motion.li)`
   margin-bottom: 10px;
+`;
+
+const LinksSection = styled.div`
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+`;
+
+const LinkWrapper = styled.a`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #00aaff;
+  font-size: 18px;
+
+  &:hover {
+    color: #00ffaa;
+  }
+
+  svg {
+    font-size: 36px;
+    margin-bottom: 8px;
+  }
 `;
 
 // Functional Component
@@ -164,6 +190,25 @@ function AboutMe() {
             ))}
           </SkillList>
         </SkillSection>
+
+        <LinksSection>
+          <LinkWrapper
+            href="https://www.linkedin.com/in/nihal-g-bailur/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaLinkedin />
+            LinkedIn
+          </LinkWrapper>
+          <LinkWrapper href="mailto:nihalgbailur@gmail.com">
+            <FaEnvelope />
+            Email Me
+          </LinkWrapper>
+          <LinkWrapper href="/path/to/your/resume.pdf" download>
+            <FaDownload />
+            Resume
+          </LinkWrapper>
+        </LinksSection>
       </TextWrapper>
     </AboutContainer>
   );
