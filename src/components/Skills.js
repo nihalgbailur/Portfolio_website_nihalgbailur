@@ -1,108 +1,112 @@
-import React from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { FaPython, FaGithub, FaDatabase } from 'react-icons/fa';
-import { SiConfluence, SiJira } from 'react-icons/si';
+import React from "react";
+import styled from "styled-components";
 
-// Container for the skills section
-const SkillsContainer = styled.section`
+const SkillsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 60px 20px;
-  background: rgba(255, 255, 255, 0.1); /* Frosted glass effect */
-  backdrop-filter: blur(15px);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  color: #fff; /* Set text color to white */
-  max-width: 1000px;
-  margin: 60px auto;
+  align-items: center;
+  min-height: 100vh;
+  padding: 50px 20px;
 `;
 
-// Title styling
-const SectionTitle = styled.h2`
-  font-size: 2.5rem;
+const SkillsTitle = styled.h1`
+  font-size: 48px;
   font-weight: bold;
-  background: linear-gradient(90deg, #56ccf2, #2f80ed); /* Blue to Purple Gradient */
+  text-align: center;
+  background: linear-gradient(45deg, #00aaff, #00ffaa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0px 0px 20px rgba(0, 255, 255, 0.8);
   margin-bottom: 40px;
-  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+  }
 `;
 
-// Grid for skill cards
-const SkillGrid = styled.div`
+const SkillsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 30px;
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
 `;
 
-// Individual skill card styling
-const SkillCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+const SkillCard = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  color: #ffffff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #161b22;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+
   &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 30px rgba(0, 255, 255, 0.3);
   }
 `;
 
-// Icon styling
-const SkillIcon = styled.div`
-  font-size: 3.5rem;
+const SkillLogo = styled.img`
+  width: 60px;
+  height: 60px;
   margin-bottom: 15px;
-  color: #007aff; /* Apple-inspired blue */
-  transition: color 0.2s ease;
-  ${SkillCard}:hover & {
-    color: #34e89e; /* Light green on hover */
-  }
 `;
 
-// Skill title styling
-const SkillTitle = styled.h3`
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #ffffff; /* White color for better visibility */
+const SkillName = styled.h3`
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
 `;
 
-// Define the skills component
 function Skills() {
-  // Array of skills with icons and titles
   const skills = [
-    { name: 'Python', icon: <FaPython /> },
-    { name: 'GitHub', icon: <FaGithub /> },
-    { name: 'SQL', icon: <FaDatabase /> },
-    { name: 'Confluence', icon: <SiConfluence /> },
-    { name: 'Jira', icon: <SiJira /> },
+    {
+      id: "1",
+      name: "GitHub",
+      logo: "https://cdn-icons-png.flaticon.com/512/25/25231.png", // Updated GitHub logo
+    },
+    {
+      id: "2",
+      name: "Python",
+      logo: "https://cdn-icons-png.flaticon.com/512/1822/1822899.png", // Updated Python logo
+    },
+    {
+      id: "3",
+      name: "JavaScript",
+      logo: "https://cdn-icons-png.flaticon.com/512/5968/5968292.png",
+    },
+    {
+      id: "4",
+      name: "React",
+      logo: "https://cdn-icons-png.flaticon.com/512/1183/1183672.png",
+    },
+    {
+      id: "5",
+      name: "SQL",
+      logo: "https://cdn-icons-png.flaticon.com/512/2772/2772128.png",
+    },
   ];
 
   return (
-    <SkillsContainer id="skills">
-      <SectionTitle>My Skills</SectionTitle>
-      <SkillGrid>
-        {skills.map((skill, index) => (
-          <SkillCard
-            key={index}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-          >
-            <SkillIcon>{skill.icon}</SkillIcon>
-            <SkillTitle>{skill.name}</SkillTitle>
+    <SkillsContainer>
+      <SkillsTitle>Skills</SkillsTitle>
+      <SkillsGrid>
+        {skills.map((skill) => (
+          <SkillCard key={skill.id}>
+            <SkillLogo src={skill.logo} alt={skill.name} />
+            <SkillName>{skill.name}</SkillName>
           </SkillCard>
         ))}
-      </SkillGrid>
+      </SkillsGrid>
     </SkillsContainer>
   );
 }

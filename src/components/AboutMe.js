@@ -1,217 +1,169 @@
-import React from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa'; // Importing icons
+import React from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { FaLinkedin, FaFilePdf } from "react-icons/fa";
 
 // Styled Components
 const AboutContainer = styled.section`
   min-height: 100vh;
-  padding: 80px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: left;
-  background-color: #000;
+  align-items: center;
+  background: linear-gradient(135deg, #000, #111);
   color: #fff;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-
-  @media (max-width: 768px) {
-    padding: 60px 15px;
-  }
-
-  @media (max-width: 480px) {
-    padding: 40px 10px;
-  }
+  text-align: center;
+  position: relative;
 `;
 
-const TextWrapper = styled(motion.div)`
-  max-width: 1000px;
-  margin: 0 auto;
-`;
-
-const Title = styled(motion.h1)`
-  font-size: 48px;
-  margin-bottom: 20px;
-  color: #00aaff;
-  background: linear-gradient(45deg, #00aaff, #00ffaa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  @media (max-width: 768px) {
-    font-size: 36px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 28px;
-  }
-`;
-
-const SubText = styled(motion.p)`
-  font-size: 24px;
-  line-height: 1.6;
-  margin-bottom: 40px;
-  color: #fff;
-
-  @media (max-width: 768px) {
-    font-size: 20px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 18px;
-    margin-bottom: 30px;
-  }
-`;
-
-const SkillSection = styled.div`
-  margin-top: 20px;
-`;
-
-const SkillTitle = styled(motion.h2)`
-  font-size: 32px;
-  margin-bottom: 15px;
-  color: #00aaff;
-  background: linear-gradient(45deg, #00aaff, #00ffaa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  @media (max-width: 768px) {
-    font-size: 28px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 24px;
-  }
-`;
-
-const SkillList = styled.ul`
-  font-size: 20px;
-  line-height: 1.6;
-
-  @media (max-width: 768px) {
-    font-size: 18px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 16px;
-  }
-`;
-
-const SkillItem = styled(motion.li)`
-  margin-bottom: 10px;
-`;
-
-const LinksSection = styled.div`
-  margin-top: 40px;
+const Navbar = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 30px;
   display: flex;
   gap: 20px;
-  justify-content: center;
+
+  a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: #00aaff;
+    }
+  }
+
+  @media (max-width: 768px) {
+    top: 10px;
+    right: 15px;
+
+    a {
+      font-size: 14px;
+    }
+  }
 `;
 
-const LinkWrapper = styled.a`
+const HeroText = styled(motion.div)`
+  max-width: 800px;
+
+  h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1.2;
+    background: linear-gradient(45deg, #00aaff, #00ffaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5);
+
+    @media (max-width: 768px) {
+      font-size: 3rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  p {
+    font-size: 1.5rem;
+    color: #ccc;
+    margin-top: 20px;
+
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
+  }
+`;
+
+const ScrollIndicator = styled.div`
+  position: absolute;
+  bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none;
-  color: #00aaff;
-  font-size: 18px;
+  gap: 5px;
 
-  &:hover {
-    color: #00ffaa;
+  .arrow {
+    width: 24px;
+    height: 24px;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    animation: bounce 1.5s infinite;
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: rotate(45deg) translateY(0);
+      }
+      50% {
+        transform: rotate(45deg) translateY(10px);
+      }
+    }
   }
 
-  svg {
-    font-size: 36px;
-    margin-bottom: 8px;
+  span {
+    font-size: 14px;
+    color: #fff;
+    margin-top: 5px;
+  }
+
+  @media (max-width: 768px) {
+    bottom: 20px;
   }
 `;
 
-// Functional Component
-function AboutMe() {
-  const { ref, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true,
-  });
-
+// Component
+function About() {
   return (
     <AboutContainer id="about">
-      <TextWrapper
-        ref={ref}
-        initial={{ opacity: 0, y: 50 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
-        <Title
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+      {/* Navbar */}
+      <Navbar>
+        <a
+          href="https://www.linkedin.com/in/nihal-g-bailur/"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Hello! I'm a passionate Automotive Testing Professional
-        </Title>
-        <SubText
-          initial={{ opacity: 0, x: -100 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          LinkedIn
+        </a>
+        <a
+          href="https://drive.google.com/file/d/your_resume_drive_id/view"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          With a strong focus on Python-based ADAS Testing, I bring valuable
-          skills in Python, Git, GitHub, MTS tool, and CarMaker tool to ensure
-          top-notch performance and reliability in automotive systems,
-          contributing to enhanced safety and innovation in the industry.
-        </SubText>
-        <SkillSection>
-          <SkillTitle
-            initial={{ opacity: 0, y: -30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-          >
-            Key Skills & Experiences
-          </SkillTitle>
-          <SkillList>
-            {[
-              'Over 2.5 years of expertise in Automotive Testing',
-              'Specializing in the Automotive domain, excelling in testing Advanced Driver Assistance Systems (ADAS)',
-              'Proficient in Python scripting to create efficient testing scripts',
-              'Experienced with Git and GitHub for version control and collaborative development',
-              'Utilized MTS tool for comprehensive Automotive Testing and validation',
-              'Familiar with CarMaker tool for simulating real-world scenarios and optimizing automotive system performance',
-            ].map((skill, index) => (
-              <SkillItem
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, ease: 'easeOut', delay: index * 0.2 }}
-              >
-                {skill}
-              </SkillItem>
-            ))}
-          </SkillList>
-        </SkillSection>
+          Resume
+        </a>
+      </Navbar>
 
-        <LinksSection>
-          <LinkWrapper
-            href="https://www.linkedin.com/in/nihal-g-bailur/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaLinkedin />
-            LinkedIn
-          </LinkWrapper>
-          <LinkWrapper href="mailto:nihalgbailur@gmail.com">
-            <FaEnvelope />
-            Email Me
-          </LinkWrapper>
-          <LinkWrapper href="/path/to/your/resume.pdf" download>
-            <FaDownload />
-            Resume
-          </LinkWrapper>
-        </LinksSection>
-      </TextWrapper>
+      {/* Hero Text */}
+      <HeroText
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <h1>
+          I am NIHAL G BAILUR   <br />
+          ADAS Engineer
+        </h1>
+        <p>
+          A passionate software engineer with expertise in automotive testing
+          and Python scripting. Based in India, driving innovation in ADAS and
+          beyond.
+        </p>
+      </HeroText>
+
+      {/* Scroll Indicator */}
+      <ScrollIndicator>
+        <div className="arrow"></div>
+        <span>Scroll Down</span>
+      </ScrollIndicator>
     </AboutContainer>
   );
 }
 
-export default AboutMe;
+export default About;

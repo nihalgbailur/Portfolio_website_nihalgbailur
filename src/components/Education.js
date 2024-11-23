@@ -33,6 +33,7 @@ const Title = styled(motion.h1)`
   background: linear-gradient(45deg, #00aaff, #00ffaa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7), 0px 0px 20px rgba(0, 255, 255, 0.5);
 
   @media (max-width: 768px) {
     font-size: 28px;
@@ -68,10 +69,16 @@ const EducationCard = styled(motion.div)`
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
   border-radius: 12px;
-  padding: 40px 20px; /* Increased top padding */
+  padding: 40px 20px;
   box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.15);
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 10px 40px rgba(0, 255, 255, 0.3);
+  }
 
   @media (max-width: 768px) {
     padding: 30px 15px;
@@ -84,7 +91,7 @@ const EducationCard = styled(motion.div)`
 
 const DateBubble = styled.div`
   position: absolute;
-  top: 10px; /* Adjusted positioning */
+  top: 10px;
   left: 20px;
   background: linear-gradient(45deg, #00aaff, #00ffaa);
   color: #fff;
@@ -92,18 +99,19 @@ const DateBubble = styled.div`
   font-weight: bold;
   padding: 5px 10px;
   border-radius: 50px;
+  text-shadow: 0px 0px 5px rgba(0, 255, 255, 0.6);
 
   @media (max-width: 768px) {
     font-size: 12px;
     padding: 4px 8px;
-    top: 8px; /* Adjusted for smaller screens */
+    top: 8px;
     left: 15px;
   }
 
   @media (max-width: 480px) {
     font-size: 10px;
     padding: 3px 6px;
-    top: 6px; /* Adjusted for smaller screens */
+    top: 6px;
     left: 10px;
   }
 `;
@@ -112,6 +120,8 @@ const Institution = styled.h2`
   font-size: 24px;
   font-weight: bold;
   margin-top: 30px;
+  color: #fff;
+  text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7);
 
   @media (max-width: 768px) {
     font-size: 20px;
@@ -126,6 +136,7 @@ const Degree = styled.h3`
   font-size: 20px;
   color: #00ffaa;
   margin-bottom: 10px;
+  text-shadow: 0px 0px 10px rgba(0, 255, 170, 0.7);
 
   @media (max-width: 768px) {
     font-size: 18px;

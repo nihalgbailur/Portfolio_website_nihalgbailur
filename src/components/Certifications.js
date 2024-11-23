@@ -1,10 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-
-import hackerRankLogo from "../assets/hackerrank-logo.png";
-import courseraLogo from "../assets/coursera.png";
-import udemyLogo from "../assets/udemy-logo.png";
 
 // Styled Components
 const CertificationsContainer = styled.section`
@@ -14,7 +10,10 @@ const CertificationsContainer = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #000, #111);
+  background: #000;
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.25);
   color: #fff;
 
   @media (max-width: 768px) {
@@ -34,6 +33,7 @@ const Title = styled(motion.h1)`
   background: linear-gradient(45deg, #00aaff, #00ffaa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7), 0px 0px 20px rgba(0, 255, 255, 0.5);
 
   @media (max-width: 768px) {
     font-size: 28px;
@@ -50,7 +50,7 @@ const CertificationsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  max-width: 900px;
+  max-width: 800px;
   width: 100%;
 
   @media (max-width: 768px) {
@@ -62,110 +62,104 @@ const CertificationsWrapper = styled.div`
   }
 `;
 
-const CertificationCard = styled(motion.a)`
-  display: flex;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  position: relative;
-  transition: all 0.3s ease-in-out;
+const CertificationLink = styled.a`
   text-decoration: none;
+  color: inherit;
 
   &:hover {
-    transform: scale(1.05);
-    background: linear-gradient(135deg, #1e1e1e, #2c2c2e);
-    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    padding: 15px;
-    align-items: flex-start;
-  }
-
-  @media (max-width: 480px) {
-    flex-direction: column;
-    padding: 10px;
-    align-items: flex-start;
+    color: inherit;
   }
 `;
 
-const Logo = styled(motion.img)`
-  width: 80px;
-  height: 80px;
-  margin-right: 20px;
-  border-radius: 50%;
-  transition: transform 0.3s ease-in-out;
-
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
-  }
-
-  @media (max-width: 768px) {
-    width: 60px;
-    height: 60px;
-    margin-right: 15px;
-  }
-
-  @media (max-width: 480px) {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-`;
-
-const Details = styled.div`
+const CertificationCard = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  width: 100%; /* Ensures proper spacing for the content */
-  overflow: hidden; /* Prevents overflow for long text */
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
+  padding: 40px 20px;
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 10px 40px rgba(0, 255, 255, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 25px 10px;
+  }
 `;
 
-const CertificateTitle = styled.h2`
+const DateBubble = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  background: linear-gradient(45deg, #00aaff, #00ffaa);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 50px;
+  text-shadow: 0px 0px 5px rgba(0, 255, 255, 0.6);
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    padding: 4px 8px;
+    top: 8px;
+    left: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
+    padding: 3px 6px;
+    top: 6px;
+    left: 10px;
+  }
+`;
+
+const CertificateName = styled.h2`
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-top: 30px;
   color: #fff;
-  text-align: left;
-  word-wrap: break-word;
-  word-break: break-word; /* Ensures long words are broken into lines */
-  white-space: normal; /* Ensures the text wraps to the next line if needed */
+  text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7);
 
   @media (max-width: 768px) {
     font-size: 20px;
-    margin-bottom: 8px;
   }
 
   @media (max-width: 480px) {
     font-size: 18px;
-    margin-bottom: 6px;
   }
 `;
 
-const Issuer = styled.p`
-  font-size: 18px;
-  margin-bottom: 5px;
-  color: #ccc;
+const Issuer = styled.h3`
+  font-size: 20px;
+  color: #00ffaa;
+  margin-bottom: 10px;
+  text-shadow: 0px 0px 10px rgba(0, 255, 170, 0.7);
 
   @media (max-width: 768px) {
-    font-size: 16px;
-    margin-bottom: 4px;
+    font-size: 18px;
   }
 
   @media (max-width: 480px) {
-    font-size: 14px;
-    margin-bottom: 3px;
+    font-size: 16px;
   }
 `;
 
-const IssuedDate = styled.p`
+const Description = styled.p`
   font-size: 16px;
-  color: #999;
+  line-height: 1.6;
+  color: #ccc;
 
   @media (max-width: 768px) {
     font-size: 14px;
@@ -176,28 +170,36 @@ const IssuedDate = styled.p`
   }
 `;
 
-function Certifications() {
+const Separator = styled.hr`
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, #00aaff, #00ffaa);
+  margin: 20px 0;
+`;
+
+// Component
+const Certifications = memo(() => {
   const certifications = [
     {
-      name: "Python(Basic) Certificate",
-      logo: hackerRankLogo,
+      date: "Issued Nov 2021",
+      name: "Python (Basic) Certificate",
       issuer: "HackerRank",
-      issuedDate: "Issued Nov 2021",
+      description: "Validated knowledge of Python basics including data types, loops, and functions.",
       link: "https://www.hackerrank.com/certificates/DF7F29795DEE",
     },
     {
-      name: "Getting Started with AWS Machine Learning",
-      logo: courseraLogo,
+      date: "Issued Jun 2021",
+      name: "AWS Machine Learning",
       issuer: "Coursera",
-      issuedDate: "Issued Jun 2021",
+      description: "Completed foundational machine learning concepts using AWS tools and services.",
       link: "https://www.coursera.org/account/accomplishments/certificate/AXUDSPTNMR3Y",
     },
     {
-      name: "Machine Learning A-Z: Hands-On Python & R In Data Science",
-      logo: udemyLogo,
+      date: "Issued Jan 2019",
+      name: "Machine Learning A-Z",
       issuer: "Udemy",
-      issuedDate: "Issued Jan 2019",
-      link: "https://www.udemy.com/certificate/UC-UOHZKCAG/",
+      description: "Gained practical experience in Python and R for machine learning algorithms.",
+      link: "https://www.udemy.com/certificate/UC-8H9B5M7/",
     },
   ];
 
@@ -212,30 +214,21 @@ function Certifications() {
       </Title>
       <CertificationsWrapper>
         {certifications.map((cert, index) => (
-          <CertificationCard
-            key={index}
-            href={cert.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.2 }}
-          >
-            <Logo
-              src={cert.logo}
-              alt={`${cert.issuer} logo`}
-              whileHover={{ scale: 1.1 }}
-            />
-            <Details>
-              <CertificateTitle>{cert.name}</CertificateTitle>
-              <Issuer>{cert.issuer}</Issuer>
-              <IssuedDate>{cert.issuedDate}</IssuedDate>
-            </Details>
-          </CertificationCard>
+          <React.Fragment key={index}>
+            <CertificationLink href={cert.link} target="_blank" rel="noopener noreferrer">
+              <CertificationCard>
+                <DateBubble>{cert.date}</DateBubble>
+                <CertificateName>{cert.name}</CertificateName>
+                <Issuer>{cert.issuer}</Issuer>
+                <Description>{cert.description}</Description>
+              </CertificationCard>
+            </CertificationLink>
+            {index < certifications.length - 1 && <Separator />}
+          </React.Fragment>
         ))}
       </CertificationsWrapper>
     </CertificationsContainer>
   );
-}
+});
 
 export default Certifications;

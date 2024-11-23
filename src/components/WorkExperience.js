@@ -1,167 +1,171 @@
-import React from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-const WorkContainer = styled.section`
+// Styled Components
+const WorkExperienceContainer = styled.section`
   min-height: 100vh;
-  max-width: 1200px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
-  text-align: left;
-  background: #000; /* Solid black background */
+  background: linear-gradient(135deg, #000, #111);
   color: #fff;
-  margin: 0;
-  padding: 60px 20px;
-
-  @media (max-width: 768px) {
-    padding: 70px 15px;
-  }
-
-  @media (max-width: 480px) {
-    padding: 50px 10px;
-  }
+  text-align: center;
+  padding: 40px 20px;
 `;
 
-const Title = styled.h1`
-  font-size: 48px;
+const Heading = styled(motion.h1)`
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 1.2;
+  background: linear-gradient(90deg, #56ccf2, #2f80ed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5);
   margin-bottom: 40px;
-  background: linear-gradient(90deg, #56ccf2, #2f80ed); /* Blue to Purple Gradient */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 
   @media (max-width: 768px) {
-    font-size: 36px;
-    margin-bottom: 10px;
+    font-size: 3rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 28px;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
   }
 `;
 
-const JobSection = styled.div`
-  margin-bottom: 30px;
+const WorkList = styled.div`
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+`;
 
-  @media (max-width: 768px) {
-    margin-bottom: 20px;
-  }
+const WorkItem = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px 30px;
+  border-radius: 16px;
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.25);
+  text-align: left;
+  transition: all 0.3s ease-in-out;
 
-  @media (max-width: 480px) {
-    margin-bottom: 15px;
+  &:hover {
+    background: linear-gradient(135deg, rgba(0, 170, 255, 0.1), rgba(0, 255, 170, 0.1));
+    transform: scale(1.02);
+    box-shadow: 0px 12px 40px rgba(0, 255, 255, 0.3);
   }
 `;
 
-const JobTitle = styled.h2`
-  font-size: 32px;
+const Position = styled.h2`
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #56ccf2;
   margin-bottom: 10px;
-  background: linear-gradient(90deg, #56ccf2, #2f80ed); /* Blue to Purple Gradient */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 
   @media (max-width: 768px) {
-    font-size: 28px;
-    margin-bottom: 8px;
+    font-size: 1.5rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 24px;
-    margin-bottom: 6px;
+    font-size: 1.2rem;
   }
 `;
 
-const CompanyDetails = styled.p`
-  font-size: 20px;
-  margin-bottom: 5px;
+const Company = styled.h3`
+  font-size: 1.5rem;
   color: #ccc;
+  margin-bottom: 10px;
 
   @media (max-width: 768px) {
-    font-size: 18px;
-    margin-bottom: 4px;
+    font-size: 1.3rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 16px;
-    margin-bottom: 3px;
+    font-size: 1rem;
   }
 `;
 
 const Duration = styled.p`
-  font-size: 18px;
-  margin-bottom: 15px;
+  font-size: 1rem;
   color: #bbb;
+  margin-bottom: 15px;
 
   @media (max-width: 768px) {
-    font-size: 16px;
-    margin-bottom: 12px;
+    font-size: 0.9rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 14px;
-    margin-bottom: 10px;
+    font-size: 0.8rem;
   }
 `;
 
 const Description = styled.p`
-  font-size: 20px;
+  font-size: 1.2rem;
   line-height: 1.6;
-  margin-bottom: 30px;
   color: #ddd;
 
   @media (max-width: 768px) {
-    font-size: 18px;
-    margin-bottom: 25px;
+    font-size: 1rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 0.9rem;
   }
 `;
 
+// Component
 function WorkExperience() {
   const { ref, inView } = useInView({
     threshold: 0.5,
     triggerOnce: true,
   });
 
+  const workExperiences = [
+    {
+      position: "Engineer",
+      company: "Continental · Full-time",
+      duration: "Dec 2021 - Present · 2 yrs 9 mos",
+      description:
+        "ADAS testing with over 2.9 years of experience, leveraging Python scripting for efficient test automation. Proficient in Git and GitHub for streamlined collaboration and experienced in using MTS and CarMaker tools.",
+    },
+    {
+      position: "Student Intern",
+      company: "GRID R&D · Internship",
+      duration: "Oct 2019 - Dec 2019 · 3 mos",
+      description:
+        "Contributed to two pioneering projects, gaining hands-on experience in stock trading, real-time stock prediction using PyQt5, NLP-based sentiment analysis on Twitter data, and implementing a Flask backend for secure login credentials generation.",
+    },
+  ];
+
   return (
-    <WorkContainer id="work">
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 50 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+    <WorkExperienceContainer id="work-experience">
+      <Heading
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <Title>Work Experience</Title>
-
-        {/* Continental Experience */}
-        <JobSection>
-          <JobTitle>Engineer</JobTitle>
-          <CompanyDetails>Continental · Full-time</CompanyDetails>
-          <Duration>Dec 2021 - Present · 2 yrs 9 mos</Duration>
-          <Description>
-            ADAS testing with over 2.9 years of experience, leveraging Python scripting for efficient test automation.
-            Proficient in Git and GitHub for streamlined collaboration and experienced in using MTS and CarMaker tools.
-          </Description>
-        </JobSection>
-
-        {/* GRID R&D Internship */}
-        <JobSection>
-          <JobTitle>Student Intern</JobTitle>
-          <CompanyDetails>GRID R&D · Internship</CompanyDetails>
-          <Duration>Oct 2019 - Dec 2019 · 3 mos</Duration>
-          <Description>
-            During my three-month internship at Grid R&D Company, I actively contributed to two pioneering projects,
-            gaining hands-on experience in stock trading, real-time stock prediction using PyQt5, NLP-based sentiment
-            analysis on Twitter data, and implementing a Flask backend for secure login credentials generation.
-          </Description>
-        </JobSection>
-      </motion.div>
-    </WorkContainer>
+        Work Experience
+      </Heading>
+      <WorkList>
+        {workExperiences.map((work, index) => (
+          <WorkItem
+            key={index}
+            ref={ref}
+            initial={{ opacity: 0, y: 50 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
+          >
+            <Position>{work.position}</Position>
+            <Company>{work.company}</Company>
+            <Duration>{work.duration}</Duration>
+            <Description>{work.description}</Description>
+          </WorkItem>
+        ))}
+      </WorkList>
+    </WorkExperienceContainer>
   );
 }
 

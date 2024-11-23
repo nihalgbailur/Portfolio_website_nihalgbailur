@@ -1,89 +1,123 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const PublicationsContainer = styled.div`
   padding: 50px 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  min-height: 100vh;
+`;
+
+const PublicationsTitle = styled(motion.h1)`
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(45deg, #00aaff, #00ffaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 0px 20px rgba(0, 255, 255, 0.8);
+  margin-bottom: 20px;
 
   @media (max-width: 768px) {
-    padding: 40px 15px;
+    font-size: 36px;
   }
 
   @media (max-width: 480px) {
-    padding: 30px 10px;
+    font-size: 28px;
   }
 `;
 
-const Publication = styled.div`
-  margin-bottom: 30px;
+const PublicationsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+`;
 
-  @media (max-width: 768px) {
-    margin-bottom: 25px;
-  }
+const PublicationCard = styled(motion.div)`
+  position: relative;
+  background: linear-gradient(135deg, #161b22, #20262d);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
 
-  @media (max-width: 480px) {
-    margin-bottom: 20px;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 30px rgba(0, 255, 255, 0.3);
   }
 `;
 
 const PublicationTitle = styled.h3`
-  font-size: 22px;
-  margin-bottom: 10px;
-
-  @media (max-width: 768px) {
-    font-size: 20px;
-    margin-bottom: 8px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 18px;
-    margin-bottom: 6px;
-  }
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0;
 `;
 
-const Journal = styled.p`
+const PublicationDetails = styled.p`
   font-size: 16px;
-  line-height: 1.4;
-
-  @media (max-width: 768px) {
-    font-size: 15px;
-    line-height: 1.3;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 14px;
-    line-height: 1.3;
-  }
+  color: #c9d1d9;
+  margin-top: 10px;
 `;
 
 const PublicationLink = styled.a`
-  color: #0071e3;
+  margin-top: 15px;
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #238636;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
   &:hover {
-    text-decoration: underline;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 15px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 14px;
+    background-color: #2ea043;
+    box-shadow: 0px 4px 15px rgba(0, 255, 0, 0.5);
   }
 `;
 
 function Publications() {
+  const publications = [
+    {
+      id: "1",
+      title: "Sentiment Analysis on Twitter Data using ML",
+      details: "Published in IRJET, 2020",
+      link: "https://www.irjet.net/archives/V7/i7/IRJET-V7I7767.pdf",
+    },
+  ];
+
   return (
     <PublicationsContainer>
-      <h2>Paper Publications</h2>
-      <Publication>
-        <PublicationTitle>Paper Title</PublicationTitle>
-        <Journal>Journal/Conference Name, Year</Journal>
-        <PublicationLink href="https://link-to-paper" target="_blank" rel="noopener noreferrer">
-          Read More
-        </PublicationLink>
-      </Publication>
-      {/* Add more publications as needed */}
+      <PublicationsTitle
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        Publications
+      </PublicationsTitle>
+      <PublicationsGrid>
+        {publications.map((publication) => (
+          <PublicationCard
+            key={publication.id}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            <PublicationTitle>{publication.title}</PublicationTitle>
+            <PublicationDetails>{publication.details}</PublicationDetails>
+            <PublicationLink href={publication.link} target="_blank" rel="noopener noreferrer">
+              View Publication
+            </PublicationLink>
+          </PublicationCard>
+        ))}
+      </PublicationsGrid>
     </PublicationsContainer>
   );
 }

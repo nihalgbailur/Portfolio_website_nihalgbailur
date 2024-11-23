@@ -1,105 +1,124 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const ContactContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  min-height: 100vh;
   padding: 50px 20px;
-  max-width: 800px;
-  margin: 0 auto;
+`;
+
+const ContactTitle = styled(motion.h1)`
+  font-size: 48px;
+  font-weight: bold;
   text-align: center;
+  background: linear-gradient(45deg, #00aaff, #00ffaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 0px 20px rgba(0, 255, 255, 0.8);
+  margin-bottom: 40px;
 
   @media (max-width: 768px) {
-    padding: 40px 15px;
+    font-size: 36px;
   }
 
   @media (max-width: 480px) {
-    padding: 30px 10px;
+    font-size: 28px;
   }
 `;
 
-const ContactForm = styled.form`
+const ContactForm = styled(motion.form)`
+  background: linear-gradient(135deg, #161b22, #20262d);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-top: 30px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto; /* Ensure the form is centered horizontally */
 
-  @media (max-width: 768px) {
-    gap: 15px;
-    margin-top: 25px;
-  }
-
-  @media (max-width: 480px) {
-    gap: 10px;
-    margin-top: 20px;
+  &:hover {
+    box-shadow: 0px 8px 30px rgba(0, 255, 255, 0.3);
   }
 `;
 
-const Input = styled.input`
-  padding: 10px;
+const InputField = styled.input`
+  width: 90%; /* Reduced horizontal size */
+  padding: 15px;
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  color: #ffffff;
+  background: #1f252d;
+  border: 2px solid #30363d;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin: 0 auto; /* Center the input field horizontally */
 
-  @media (max-width: 768px) {
-    padding: 8px;
-    font-size: 14px;
-  }
-
-  @media (max-width: 480px) {
-    padding: 6px;
-    font-size: 13px;
+  &:focus {
+    outline: none;
+    border-color: #00aaff;
+    box-shadow: 0px 4px 15px rgba(0, 170, 255, 0.5);
   }
 `;
 
 const TextArea = styled.textarea`
-  padding: 10px;
+  width: 90%; /* Reduced horizontal size */
+  padding: 15px;
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: none;
+  color: #ffffff;
+  background: #1f252d;
+  border: 2px solid #30363d;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin: 0 auto; /* Center the text area horizontally */
 
-  @media (max-width: 768px) {
-    padding: 8px;
-    font-size: 14px;
-  }
-
-  @media (max-width: 480px) {
-    padding: 6px;
-    font-size: 13px;
+  &:focus {
+    outline: none;
+    border-color: #00aaff;
+    box-shadow: 0px 4px 15px rgba(0, 170, 255, 0.5);
   }
 `;
 
 const SubmitButton = styled.button`
-  padding: 10px 20px;
+  width: 90%; /* Match the size of input fields */
+  padding: 15px 20px;
   font-size: 16px;
-  color: white;
-  background-color: #0071e3;
+  font-weight: bold;
+  color: #ffffff;
+  background: #238636;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 auto;
 
   &:hover {
-    background-color: #005bb5;
-  }
-
-  @media (max-width: 768px) {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-
-  @media (max-width: 480px) {
-    padding: 6px 12px;
-    font-size: 13px;
+    background: #2ea043;
+    box-shadow: 0px 4px 15px rgba(0, 255, 0, 0.5);
   }
 `;
 
 function Contact() {
   return (
     <ContactContainer>
-      <h2>Contact</h2>
-      <p>Feel free to reach out to me!</p>
-      <ContactForm>
-        <Input type="text" placeholder="Your Name" required />
-        <Input type="email" placeholder="Your Email" required />
+      <ContactTitle
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        Contact Me
+      </ContactTitle>
+      <ContactForm
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
+        <InputField type="text" placeholder="Your Name" required />
+        <InputField type="email" placeholder="Your Email" required />
         <TextArea rows="5" placeholder="Your Message" required />
         <SubmitButton type="submit">Send Message</SubmitButton>
       </ContactForm>
